@@ -1,0 +1,275 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 100px;
+  background-color: #131312;
+  position: relative;
+  padding: 30px;
+}
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+.logo img {
+  width: 90px;
+  object-fit: contain;
+}
+.logo h2 {
+  font-family: "Lora";
+  color: #d6ad60;
+  font-size: 30px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 45px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: white;
+  
+}
+
+.top-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.top-icons a {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d6ad60;
+  border: 1px solid #3d3322;
+  background-color: #181816;
+  font-size: 12px;
+}
+
+.search-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+
+.perfil {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  min-width: 150px;
+  padding: 10px 14px;
+  border: 1px solid #ffffff2e;
+  border-radius: 999px;
+  background-color: #131312;
+}
+
+.perfil img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  border-radius: 50%;
+  background-color: #131312;
+}
+
+.perfil-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  line-height: 1;
+}
+
+.perfil-info h4 {
+  color: white;
+  font-size: 14px;
+}
+
+.perfil-info a {
+  color: #d6ad60;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.hero {
+  min-height: calc(100vh - 100px);
+
+  background-image: linear-gradient(#00000073, #00000073),
+                    url("../assets/banner-perfumes-negros-elegantes.png");
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  color: white;
+  text-align: left;
+  padding: 0 8%;
+}
+
+.hero-content {
+  max-width: 620px;
+  padding: 20px 0;
+}
+
+.tag {
+  display: inline-block;
+  padding: 8px 18px;
+  margin-bottom: 20px;
+
+  color: #d6ad60;
+  border: 1px solid #d6ad60;
+  border-radius: 999px;
+  background-color: #d6ad602e;
+}
+
+.hero h1 {
+  font-size: 58px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 20px;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.coleccion {
+  padding: 80px 8%;
+  background-color: #0f0f0e;
+  color: white;
+}
+
+.section-title {
+  max-width: 680px;
+  margin-bottom: 40px;
+}
+
+.section-title span {
+  color: #d6ad60;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.section-title h2 {
+  font-family: "Lora";
+  font-size: 44px;
+  margin: 8px 0 12px;
+}
+
+.section-title p {
+  color: #c9c4bb;
+  line-height: 1.6;
+}
+
+.cards-coleccion {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.card-perfume {
+  background-color: #181816;
+  border: 1px solid #3d3322;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.card-perfume img {
+  width: 100%;
+  height: 280px;
+  object-fit: contain;
+  padding: 28px;
+  background-color: #111110;
+}
+
+.card-info {
+  padding: 24px;
+}
+
+.card-info h3 {
+  font-family: "Lora";
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.card-info p {
+  color: #c9c4bb;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+.card-compra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.card-compra .precio {
+  margin-bottom: 0;
+  color: #d6ad60;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.card-compra button {
+  padding: 10px 18px;
+  color: #131312;
+  border: none;
+  background-color: #d6ad60;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.footer {
+  padding: 24px 8%;
+  color: #c9c4bb;
+  background-color: #131312;
+  border-top: 1px solid #3d3322;
+  text-align: center;
+}
+
+.footer-menu {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.footer-menu a {
+  color: #d6ad60;
+  font-size: 13px;
+}
+
+.footer p {
+  font-size: 13px;
+}
