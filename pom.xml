@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.cia</groupId>
-    <artifactId>proyecto</artifactId>
+    <artifactId>proyectoprog</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
 
