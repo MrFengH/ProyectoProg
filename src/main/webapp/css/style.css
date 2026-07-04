@@ -7,7 +7,9 @@
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-
+/* ------------------------------------------------------------------------
+    SECCIÓN DE NAVEGACIÓN
+    -----------------------------------------------------------------------*/
 nav {
   display: flex;
   flex-direction: row;
@@ -116,6 +118,10 @@ a {
   font-weight: bold;
 }
 
+/* ------------------------------------------------------------------------
+    HERO
+    -----------------------------------------------------------------------*/
+
 .hero {
   min-height: calc(100vh - 100px);
 
@@ -159,6 +165,11 @@ a {
   line-height: 1.6;
   margin-bottom: 18px;
 }
+
+
+/* ------------------------------------------------------------------------
+    SECCIÓN DE COLECCIÓN DE PRODUCTOS
+    -----------------------------------------------------------------------*/
 
 .coleccion {
   padding: 80px 8%;
@@ -249,6 +260,69 @@ a {
   cursor: pointer;
 }
 
+/* ------------------------------------------------------------------------
+    SECCIÓN DE NOTICIAS
+    -----------------------------------------------------------------------*/
+
+.news {
+  background-color: #1b1b19;
+  color: white;
+  padding: 80px 8%;
+}
+
+.news-collection {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.news-cards {
+  display: flex;
+  flex-direction: column;
+  background-color: #181816;
+  border: 1px solid #3d3322;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.news-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 20px;
+}
+.news-info span {
+  color: #d6ad60;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+.news-info h3 {
+  font-family: "Lora";
+  font-size: 21px;
+  line-height: 1.3;
+  margin: 10px 0 12px;
+}
+
+.news-info p {
+  color: #c9c4bb;
+  line-height: 1.5;
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+.news-cards img {
+  height: 200px;
+  position: relative;
+  object-fit: cover;
+}
+.news-info a {
+  color: #d6ad60;
+  font-weight: bold;
+  font-size: 13px;
+  margin-top: auto;
+}
+
+/* ------------------------------------------------------------------------
+    PIE DE PÁGINA
+    -----------------------------------------------------------------------*/
 .footer {
   padding: 24px 8%;
   color: #c9c4bb;
