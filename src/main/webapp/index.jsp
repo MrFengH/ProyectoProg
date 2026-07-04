@@ -13,7 +13,7 @@
 <%
     String url = "jdbc:oracle:thin:@localhost:1521/XEPDB1";
     String usuario = "system";
-    String password = "1234";
+    String password = "contraseña";
 
     try {
         Class.forName("oracle.jdbc.OracleDriver");

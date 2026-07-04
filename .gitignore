@@ -1,1 +1,6 @@
-/.vscode
+target/
+.vscode/
+*.class
+*.war
+*.log
+.env
