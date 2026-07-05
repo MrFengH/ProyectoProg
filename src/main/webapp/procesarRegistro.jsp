@@ -1,5 +1,6 @@
 <%@ page import="java.sql.*" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.sql.CallableStatement" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,23 +15,23 @@
 </head>
 <body>
     <nav class="login-nav">
-        <a href="index.html" class="logo">
+        <a href="index.jsp" class="logo">
             <img src="assets/logo.png" alt="Logo ESSENCE">
             <span>ESSENCE</span>
         </a>
 
         <div class="nav-links">
-            <a href="index.html">Inicio</a>
-            <a href="index.html#coleccion">Colección</a>
-            <a href="registro.html">Registrar</a>
+            <a href="index.jsp">Inicio</a>
+            <a href="productos.jsp">Colección</a>
+            <a href="registro.html">Iniciar Sesión</a>
         </div>
         <div class="top-icons">
-            <a href="https://www.google.com" aria-label="Buscar en Google">
+            <a href="https://www.google.com">
                 <img src="assets/lupa.png" alt="Buscar" class="search-icon">
             </a>
-            <a href="https://www.instagram.com" aria-label="Instagram">IG</a>
-            <a href="https://www.facebook.com" aria-label="Facebook">F</a>
-            <a href="https://www.x.com" aria-label="X">X</a>
+            <a href="https://www.instagram.com">IG</a>
+            <a href="https://www.facebook.com">F</a>
+            <a href="https://www.x.com">X</a>
         </div>
     </nav>
     <%
@@ -38,48 +39,44 @@
         String email = request.getParameter("register-email");
         String password = request.getParameter("register-password");
 
+        String mensaje = "";
         Connection con = null;
-        PreparedStatement ps = null;
+        CallableStatement call = null;
 
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
+            con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "essence", "1234");
 
-            String url = "jdbc:oracle:thin:@localhost:1521:xe";
-            String user = "essence";
-            String pass = "1234";
+            call = con.prepareCall("{ call registrar_usuario(?, ?, ?) }");
+            call.setString(1, nombre);
+            call.setString(2, email);
+            call.setString(3, password);
+            call.execute();
 
-            con = DriverManager.getConnection(url, user, pass);
-
-            String sql = "INSERT INTO cliente (cliente_id, nombre, email, password) VALUES (seq_cliente.NEXTVAL, ?, ?, ?)";
-
-            ps = con.prepareStatement(sql);
-            ps.setString(1, nombre);
-            ps.setString(2, email);
-            ps.setString(3, password);
-
-            ps.executeUpdate();
-
-            out.println("Cliente registrado correctamente");
-
+            mensaje = "Registro Exitoso";
         } catch (Exception e) {
-            out.println("Error: " + e.getMessage());
+            mensaje = "Error: " + e.getMessage();
         } finally {
-            if (ps != null) ps.close();
-            if (con != null) con.close();
+            try {
+                if (call != null) call.close();
+                if (con  != null) con.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
     %>
     <main class="main-container">
-        <article class="form-card">
-            <p>Registro Exitoso</p>
+        <article class="form-card" style="justify-content: center; text-align: center;">
+            <p><%= mensaje %></p>
         </article>
     </main>
 
     <footer class="footer">
         <div class="footer-menu">
-            <a href="index.html">Inicio</a>
-            <a href="index.html#coleccion">Colección</a>
+            <a href="index.jsp">Inicio</a>
+            <a href="productos.jsp">Colección</a>
             <a href="contacto.html">Sobre Nosotros</a>
-            <a href="login.html">Logout</a>
+            <a href="logout.jsp">Logout</a>
         </div>
         <p>&copy; 2026 ESSENCE. Todos los derechos reservados.</p>
     </footer>

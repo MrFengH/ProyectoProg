@@ -215,8 +215,8 @@ a {
 
 .card-perfume img {
   width: 100%;
-  height: 280px;
-  object-fit: contain;
+  height: 280;
+  object-fit: cover;
   padding: 28px;
   background-color: #111110;
 }
@@ -259,6 +259,33 @@ a {
   font-weight: bold;
   cursor: pointer;
 }
+
+
+/* ------------------------------------------------------------------------
+    COLECCIÓN DE CARDS DE LOS INTEGRANTES DEL PROYECTO
+    -----------------------------------------------------------------------*/
+
+.cards-coleccion-perfiles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+}
+.cards-perfiles {
+    flex: 0 0 400px;
+    background-color: #181816;
+    border: 1px solid #3d3322;
+    border-radius: 3px;
+    padding: 14px;
+}
+.cards-perfiles img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 16px;
+}
+
 
 /* ------------------------------------------------------------------------
     SECCIÓN DE NOTICIAS
@@ -318,6 +345,250 @@ a {
   font-weight: bold;
   font-size: 13px;
   margin-top: auto;
+}
+
+/* ------------------------------------------------------------------------
+    SECCION DE CARRITO DE COMPRAS
+    -----------------------------------------------------------------------*/
+
+.cart {
+  height: 100vh;
+  background-color: #0f0f0e;
+  color: white;
+  padding: 80px 8%;
+}
+
+.cart-body {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: #181816;
+  border: 1px solid #3d3322;
+  border-radius: 3px;
+  padding: 20px;
+}
+
+.cart-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  background-color: #111110;
+  border-radius: 2px;
+  padding: 8px;
+}
+
+.cart-item-info {
+  flex: 1;
+}
+
+.cart-item-info h3 {
+  font-family: "Lora";
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+.cart-item-info p {
+  color: #c9c4bb;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.cart-item-precio {
+  color: #d6ad60;
+  font-weight: bold;
+}
+
+.cart-item-qty {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-item-qty button {
+  width: 32px;
+  height: 32px;
+  background-color: #131312;
+  border: 1px solid #3d3322;
+  color: #d6ad60;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cart-item-qty span {
+  min-width: 18px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.cart-item-total {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.cart-item-total strong {
+  font-size: 18px;
+}
+
+.cart-item-remove {
+  background: none;
+  border: none;
+  color: #e2726c;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.cart-resumen {
+  background-color: #181816;
+  border: 1px solid #3d3322;
+  border-radius: 3px;
+  padding: 28px;
+}
+
+.cart-resumen h3 {
+  font-family: "Lora";
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.resumen-linea {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #3d3322;
+  color: #c9c4bb;
+}
+
+.resumen-total {
+  border-top: 1px solid #3d3322;
+  border-bottom: none;
+  margin-top: 4px;
+  padding-top: 16px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #d6ad60;
+}
+
+.btn-pagar {
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  background-color: #d6ad60;
+  color: #131312;
+  border: none;
+  border-radius: 2px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.cart-seguir {
+  display: block;
+  text-align: center;
+  margin-top: 14px;
+  color: #d6ad60;
+  font-size: 14px;
+}
+
+.cart-vacio,
+.cart-mensaje {
+  text-align: center;
+  padding: 60px 0;
+  color: #c9c4bb;
+}
+
+.cart-vacio a,
+.cart-mensaje a {
+  color: #d6ad60;
+  font-weight: bold;
+}
+
+/* ------------------------------------------------------------------------
+    SECCION DE ORDENES (ADMIN)
+    -----------------------------------------------------------------------*/
+
+.ordenes-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.orden-card {
+  background-color: #181816;
+  border: 1px solid #3d3322;
+  border-radius: 3px;
+  padding: 24px;
+}
+
+.orden-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #3d3322;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+.orden-id {
+  display: block;
+  color: #d6ad60;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.orden-header h3 {
+  font-family: "Lora";
+  font-size: 22px;
+}
+
+.orden-fecha {
+  display: block;
+  color: #c9c4bb;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.orden-total {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  color: #c9c4bb;
+  font-size: 13px;
+}
+
+.orden-total strong {
+  color: #d6ad60;
+  font-size: 22px;
+}
+
+.orden-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.orden-item-linea {
+  display: flex;
+  justify-content: space-between;
+  color: #c9c4bb;
+  font-size: 14px;
 }
 
 /* ------------------------------------------------------------------------

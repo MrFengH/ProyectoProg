@@ -14,72 +14,85 @@
 </head>
 <body>
     <nav class="login-nav">
-        <a href="index.html" class="logo">
+        <a href="index.jsp" class="logo">
             <img src="assets/logo.png" alt="Logo ESSENCE">
             <span>ESSENCE</span>
         </a>
 
         <div class="nav-links">
-            <a href="index.html">Inicio</a>
-            <a href="index.html#coleccion">Colección</a>
+            <a href="index.jsp">Inicio</a>
+            <a href="productos.jsp">Colección</a>
             <a href="registro.html">Registrar</a>
         </div>
         <div class="top-icons">
-            <a href="https://www.google.com" aria-label="Buscar en Google">
+            <a href="https://www.google.com">
                 <img src="assets/lupa.png" alt="Buscar" class="search-icon">
             </a>
-            <a href="https://www.instagram.com" aria-label="Instagram">IG</a>
-            <a href="https://www.facebook.com" aria-label="Facebook">F</a>
-            <a href="https://www.x.com" aria-label="X">X</a>
+            <a href="https://www.instagram.com">IG</a>
+            <a href="https://www.facebook.com">F</a>
+            <a href="https://www.x.com">X</a>
         </div>
     </nav>
     <%
-        String nombre = request.getParameter("nombre");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        String email = request.getParameter("login-email");
+        String password = request.getParameter("login-password");
+
+        String mensaje = "";
+        boolean exito = false;
 
         Connection con = null;
-        PreparedStatement ps = null;
+        CallableStatement call = null;
 
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
+            con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "essence", "1234");
 
-            String url = "jdbc:oracle:thin:@localhost:1521:xe";
-            String user = "essence";
-            String pass = "1234";
+            call = con.prepareCall("{ call validar_login(?, ?, ?, ?, ?) }");
+            call.setString(1, email);
+            call.setString(2, password);
+            call.registerOutParameter(3, Types.NUMERIC);
+            call.registerOutParameter(4, Types.NUMERIC);
+            call.registerOutParameter(5, Types.VARCHAR);
+            call.execute();
 
-            con = DriverManager.getConnection(url, user, pass);
+            int resultado = call.getInt(3);
 
-            String sql = "INSERT INTO Cliente (cliente_id, nombre, email, password) VALUES (seq_cliente.NEXTVAL, ?, ?, ?)";
-
-            ps = con.prepareStatement(sql);
-            ps.setString(1, nombre);
-            ps.setString(2, email);
-            ps.setString(3, password);
-
-            ps.executeUpdate();
-
-            out.println("Cliente registrado correctamente");
-
+            if (resultado == 1) {
+                session.setAttribute("clienteId", call.getInt(4));
+                session.setAttribute("clienteNombre", call.getString(5));
+                exito = true;
+                mensaje = "Bienvenido, " + call.getString(5) + ".";
+            } else {
+                mensaje = "Correo o contraseña incorrectos.";
+            }
         } catch (Exception e) {
-            out.println("Error: " + e.getMessage());
+            mensaje = "Error: " + e.getMessage();
         } finally {
-            if (ps != null) ps.close();
-            if (con != null) con.close();
+            try {
+                if (call != null) call.close();
+                if (con  != null) con.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
     %>
     <main class="main-container">
-        <article class="form-card">
-            <p>Inicio de Sesión Exitoso</p>
+        <article class="form-card" style="justify-content: center; text-align: center;">
+            <p><%= mensaje %></p>
+            <% if (exito) { %>
+                <p class="form-link"><a href="index.jsp">Ir al inicio</a></p>
+            <% } else { %>
+                <p class="form-link"><a href="login.html">Volver a intentar</a></p>
+            <% } %>
         </article>
     </main>
 
     <footer class="footer">
         <div class="footer-menu">
-            <a href="index.html">Inicio</a>
-            <a href="index.html#coleccion">Colección</a>
+            <a href="index.jsp">Inicio</a>
+            <a href="productos.jsp">Colección</a>
             <a href="contacto.html">Sobre Nosotros</a>
-            <a href="login.html">Logout</a>
+            <a href="logout.jsp">Logout</a>
         </div>
         <p>&copy; 2026 ESSENCE. Todos los derechos reservados.</p>
     </footer>

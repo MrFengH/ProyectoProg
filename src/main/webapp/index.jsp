@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mahmoud Parfums</title>
+    <title>Essence</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,30 +17,36 @@
     <header>
         <nav>
             <div class="logo">
-                <a href="">
+                <a href="index.jsp">
                     <img src="assets/logo.png">
                 </a>
-                <a href=""><h2>ESSENCE</h2></a>
+                <a href="index.jsp"><h2>ESSENCE</h2></a>
             </div>
             <div class="nav-links">
-                <a href="index.html">Inicio</a>
-                <a href="productos.html">Colección</a>
-                <a href="">Sobre Nosotros</a>
-                <a href="">Carrito</a>
+                <a href="index.jsp">Inicio</a>
+                <a href="productos.jsp">Colección</a>
+                <a href="contacto.html">Sobre Nosotros</a>
+                <a href="carrito.jsp">Carrito</a>
+                <a href="admin.jsp">admin</a>
             </div>
             <div class="top-icons">
-                <a href="https://www.google.com" aria-label="Buscar en Google">
+                <a href="https://www.google.com">
                     <img src="assets/lupa.png" alt="Buscar" class="search-icon">
                 </a>
-                <a href="https://www.instagram.com" aria-label="Instagram">IG</a>
-                <a href="https://www.facebook.com" aria-label="Facebook">F</a>
-                <a href="https://www.x.com" aria-label="X">X</a>
+                <a href="https://www.instagram.com">IG</a>
+                <a href="https://www.facebook.com">F</a>
+                <a href="https://www.x.com">X</a>
             </div>
             <div class="perfil">
                 <img src="assets/IconoPerfil.png" alt="Icono de perfil">
                 <div class="perfil-info">
-                    <h4>Usuario</h4>
-                    <a href="login.html">Iniciar Sesión</a>
+                    <% if (session.getAttribute("clienteNombre") != null) { %>
+                        <h4><%= session.getAttribute("clienteNombre") %></h4>
+                        <a href="logout.jsp">Cerrar sesión</a>
+                    <% } else { %>
+                        <h4>Usuario</h4>
+                        <a href="login.html">Iniciar Sesión</a>
+                    <% } %>
                 </div>
             </div>
         </nav>
@@ -66,7 +72,7 @@
     </header>
 
     <main>
-        <section class="coleccion" id="coleccion">
+        <section class="coleccion">
             <div class="section-title">
                 <span>Coleccion exclusiva</span>
                 <h2>Colección</h2>
@@ -155,10 +161,10 @@
 
     <footer class="footer">
         <div class="footer-menu">
-            <a href="index.html">Inicio</a>
-            <a href="index.html#coleccion">Colección</a>
+            <a href="index.jsp">Inicio</a>
+            <a href="productos.jsp">Colección</a>
             <a href="contacto.html">Sobre Nosotros</a>
-            <a href="login.html">Logout</a>
+            <a href="logout.jsp">Logout</a>
         </div>
         <p>&copy; 2026 ESSENCE. Todos los derechos reservados.</p>
     </footer>
