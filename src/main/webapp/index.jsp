@@ -81,36 +81,36 @@
 
             <div class="cards-coleccion">
                 <article class="card-perfume">
-                    <img src="assets/LogoPerfume.png" alt="Perfume Noir Essence">
+                    <img src="assets/Bleu de Chanel Eau de Parfum.webp" alt="Bleu de Chanel Eau de Parfum">
                     <div class="card-info">
-                        <h3>Noir Essence</h3>
-                        <p>Notas de vainilla negra, madera de cedro y ambar dorado para una presencia intensa.</p>
+                        <h3>Bleu de Chanel Eau de Parfum</h3>
+                        <p>Cítricos, jengibre, incienso y sándalo.</p>
                         <div class="card-compra">
-                            <p class="precio">$89.99</p>
+                            <p class="precio">$145.00</p>
                             <button type="button">Comprar</button>
                         </div>
                     </div>
                 </article>
 
                 <article class="card-perfume">
-                    <img src="assets/LogoPerfume1.png" alt="Perfume Gold Atelier">
+                    <img src="assets/Aventus.webp" alt="Aventus">
                     <div class="card-info">
-                        <h3>Gold Atelier</h3>
-                        <p>Una fragancia sofisticada con jazmín, bergamota y almizcle suave para ocasiones especiales.</p>
+                        <h3>Aventus</h3>
+                        <p>Piña, abedul, musgo de roble y almizcle.</p>
                         <div class="card-compra">
-                            <p class="precio">$94.99</p>
+                            <p class="precio">$420.00</p>
                             <button type="button">Comprar</button>
                         </div>
                     </div>
                 </article>
 
                 <article class="card-perfume">
-                    <img src="assets/LogoPerfume (1).png" alt="Perfume Black Velvet">
+                    <img src="assets/Baccarat Rouge 540.webp" alt="Baccarat Rouge 540">
                     <div class="card-info">
-                        <h3>Black Velvet</h3>
-                        <p>Aroma envolvente de cuero fino, especias calidas y flores nocturnas con acabado elegante.</p>
+                        <h3>Baccarat Rouge 540</h3>
+                        <p>Azafrán, jazmín, cedro y ámbar.</p>
                         <div class="card-compra">
-                            <p class="precio">$99.99</p>
+                            <p class="precio">$325.00</p>
                             <button type="button">Comprar</button>
                         </div>
                     </div>
