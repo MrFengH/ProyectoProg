@@ -14,6 +14,7 @@
 </head>
 <body>
     
+    <!-- Banner superior: logo, menu de navegacion completo, iconos de busqueda/redes y estado de sesion -->
     <header>
         <nav>
             <div class="logo">
@@ -40,6 +41,8 @@
             <div class="perfil">
                 <img src="assets/IconoPerfil.png" alt="Icono de perfil">
                 <div class="perfil-info">
+                    <%-- Si hay un cliente en sesion se muestra su nombre y logout,
+                         si no, se muestra el enlace para iniciar sesion --%>
                     <% if (session.getAttribute("clienteNombre") != null) { %>
                         <h4><%= session.getAttribute("clienteNombre") %></h4>
                         <a href="logout.jsp">Cerrar sesión</a>
@@ -72,6 +75,7 @@
     </header>
 
     <main>
+        <!-- Colección de 3 perfumes destacados de la colecció -->
         <section class="coleccion">
             <div class="section-title">
                 <span>Coleccion exclusiva</span>
@@ -106,6 +110,7 @@
             </div>
         </section>
 
+        <!-- 3 noticias del mundo de la perfumeria: 2 articulos y 1 video-->
         <section class="news">
             <div class="section-title">
                 <span>Novedades del Mundo de la Perfumería</span>
@@ -147,6 +152,7 @@
 
     </main>
 
+    <!-- Pie de pagina: version reducida del menu, copyright y logout -->
     <footer class="footer">
         <div class="footer-menu">
             <a href="index.jsp">Inicio</a>

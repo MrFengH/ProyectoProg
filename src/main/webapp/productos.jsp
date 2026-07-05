@@ -14,6 +14,7 @@
 </head>
 <body>
     
+    <!-- Banner superior: logo, menu de navegacion completo e iconos de busqueda/redes -->
     <header>
         <nav>
             <div class="logo">
@@ -50,6 +51,11 @@
     <main>
         <section class="coleccion">
             <div class="cards-coleccion">
+                <%--
+                    Trae todos los productos desde Oracle (procedure
+                    mostrar_productos) y arma una tarjeta por cada uno,
+                    con su propio formulario para agregarlo al carrito.
+                --%>
                 <%
                     Connection con = null;
                     CallableStatement call = null;
@@ -98,6 +104,7 @@
         </section>
     </main>
 
+    <!-- Pie de pagina: version reducida del menu, copyright y logout -->
     <footer class="footer">
         <div class="footer-menu">
             <a href="index.jsp">Inicio</a>

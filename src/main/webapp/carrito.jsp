@@ -1,11 +1,20 @@
 <%@ page import="java.sql.*, java.util.*" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%--
+    Carrito de compras basado en sesion (Map producto_id -> cantidad).
+    Este bloque maneja 3 casos segun el parametro "accion":
+      1. agregar/incrementar/decrementar/eliminar -> solo modifica el
+         carrito en sesion y redirige (no toca la base de datos).
+      2. pagar -> crea la orden en Oracle (iniciar_orden +
+         agregar_item_orden, una orden con varios items) y vacia el carrito.
+      3. sin accion (carga normal de la pagina) -> solo arma los datos
+         para mostrar la vista del carrito.
+--%>
 <%
     final String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
     final String DB_USER = "essence";
     final String DB_PASS = "1234";
 
-    @SuppressWarnings("unchecked")
     LinkedHashMap<Integer, Integer> carrito = (LinkedHashMap<Integer, Integer>) session.getAttribute("carrito");
     if (carrito == null) {
         carrito = new LinkedHashMap<Integer, Integer>();
@@ -33,6 +42,7 @@
         response.sendRedirect("carrito.jsp");
         return;
     } else if ("pagar".equals(accion)) {
+        // Sin sesion iniciada no hay cliente_id para asociar a la orden
         Object clienteIdObj = session.getAttribute("clienteId");
         if (clienteIdObj == null) {
             response.sendRedirect("login.html");
@@ -49,12 +59,14 @@
                 Class.forName("oracle.jdbc.driver.OracleDriver");
                 con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 
+                // 1) Crear la cabecera de la orden (total en 0)
                 callOrden = con.prepareCall("{ call iniciar_orden(?, ?) }");
                 callOrden.setInt(1, clienteId);
                 callOrden.registerOutParameter(2, Types.NUMERIC);
                 callOrden.execute();
                 int ordenId = callOrden.getInt(2);
 
+                // 2) Agregar una linea de Orden_Item por cada producto distinto del carrito
                 for (Map.Entry<Integer, Integer> item : carrito.entrySet()) {
                     callItem = con.prepareCall("{ call agregar_item_orden(?, ?, ?) }");
                     callItem.setInt(1, ordenId);
@@ -81,6 +93,8 @@
         }
     }
 
+    // Trae nombre/precio/descripcion solo de los productos que estan en el carrito,
+    // para no golpear la base de datos si el carrito esta vacio
     Map<Integer, Object[]> productos = new HashMap<Integer, Object[]>();
     if (!carrito.isEmpty()) {
         Connection con = null;
@@ -118,6 +132,7 @@
         }
     }
 
+    // Subtotal, envio fijo, impuesto del 7% y total a mostrar en el resumen del pedido
     double subtotal = 0;
     for (Map.Entry<Integer, Integer> item : carrito.entrySet()) {
         Object[] info = productos.get(item.getKey());
@@ -134,7 +149,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mahmoud Parfums</title>
+    <title>Carrito</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -142,6 +157,7 @@
 </head>
 <body>
 
+    <!-- Banner superior: logo, menu de navegacion completo e iconos de busqueda/redes -->
     <header>
         <nav>
             <div class="logo">
@@ -262,6 +278,7 @@
         </section>
     </main>
 
+    <!-- Pie de pagina: version reducida del menu, copyright y logout -->
     <footer class="footer">
         <div class="footer-menu">
             <a href="index.jsp">Inicio</a>

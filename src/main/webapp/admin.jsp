@@ -1,10 +1,14 @@
 <%@ page import="java.sql.*, java.util.*" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%--
+    Panel de administracion de solo lectura
+--%>
 <%
     final String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
     final String DB_USER = "essence";
     final String DB_PASS = "1234";
 
+    // Clases locales para agrupar los datos de cada orden y sus items
     class OrdenItem {
         String nombreProd;
         int cantidad;
@@ -32,6 +36,7 @@
         Class.forName("oracle.jdbc.driver.OracleDriver");
         con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 
+        // 1 Traer la cabecera de todas las ordenes (mas reciente primero)
         callOrdenes = con.prepareCall("{ call mostrar_ordenes(?) }");
         callOrdenes.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
         callOrdenes.execute();
@@ -44,6 +49,7 @@
             orden.fechaCompra = rsOrdenes.getString("fecha_compra");
             orden.total = rsOrdenes.getDouble("total");
 
+            // 2 Por cada orden, traer sus items (producto, cantidad, subtotal)
             callItems = con.prepareCall("{ call mostrar_items_orden(?, ?) }");
             callItems.setInt(1, orden.ordenId);
             callItems.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
@@ -83,7 +89,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mahmoud Parfums</title>
+    <title>Panel de Ordenes</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -91,6 +97,7 @@
 </head>
 <body>
 
+    <!-- Banner superior: logo, menu de navegacion completo e iconos de busqueda/redes -->
     <header>
         <nav>
             <div class="logo">
@@ -129,6 +136,7 @@
         </nav>
     </header>
 
+    <!-- Contenido principal: una tarjeta por orden, con sus items adentro -->
     <main>
         <section class="cart">
             <div class="section-title">
@@ -171,6 +179,7 @@
         </section>
     </main>
 
+    <!-- Pie de pagina: version reducida del menu, copyright y logout -->
     <footer class="footer">
         <div class="footer-menu">
             <a href="index.jsp">Inicio</a>

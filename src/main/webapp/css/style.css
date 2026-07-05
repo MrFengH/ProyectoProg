@@ -352,10 +352,9 @@ a {
     -----------------------------------------------------------------------*/
 
 .cart {
-  height: 100vh;
   background-color: #0f0f0e;
   color: white;
-  padding: 80px 8%;
+  padding: 80px 8% 40px;
 }
 
 .cart-body {
