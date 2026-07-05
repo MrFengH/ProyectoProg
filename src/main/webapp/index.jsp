@@ -85,10 +85,6 @@
                     <div class="card-info">
                         <h3>Bleu de Chanel Eau de Parfum</h3>
                         <p>Cítricos, jengibre, incienso y sándalo.</p>
-                        <div class="card-compra">
-                            <p class="precio">$145.00</p>
-                            <button type="button">Comprar</button>
-                        </div>
                     </div>
                 </article>
 
@@ -97,10 +93,6 @@
                     <div class="card-info">
                         <h3>Aventus</h3>
                         <p>Piña, abedul, musgo de roble y almizcle.</p>
-                        <div class="card-compra">
-                            <p class="precio">$420.00</p>
-                            <button type="button">Comprar</button>
-                        </div>
                     </div>
                 </article>
 
@@ -109,10 +101,6 @@
                     <div class="card-info">
                         <h3>Baccarat Rouge 540</h3>
                         <p>Azafrán, jazmín, cedro y ámbar.</p>
-                        <div class="card-compra">
-                            <p class="precio">$325.00</p>
-                            <button type="button">Comprar</button>
-                        </div>
                     </div>
                 </article>
             </div>
