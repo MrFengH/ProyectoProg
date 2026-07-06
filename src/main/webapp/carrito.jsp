@@ -7,8 +7,6 @@
          carrito en sesión y redirige (no toca la base de datos).
       2. pagar -> crea la orden en Oracle (iniciar_orden +
          agregar_item_orden, una orden con varios items) y vacía el carrito.
-      3. sin acción (carga normal de la página) -> solo arma los datos
-         para mostrar la vista del carrito.
 --%>
 <%
     request.setCharacterEncoding("UTF-8");
@@ -161,8 +159,7 @@
             subtotal += ((Double) info[1]) * item.getValue();
         }
     }
-    // Por defecto "Retiro en Local" ($0); el monto real se recalcula
-    // en el navegador según el método de envío que el usuario elija
+    // Por defecto "Retiro en Local" ($0)
     double envio = 0;
     double impuestos = subtotal * 0.07;
     double total = subtotal + envio + impuestos;
