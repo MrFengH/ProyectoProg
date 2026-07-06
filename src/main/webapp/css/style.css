@@ -5,6 +5,8 @@
 }
 
 body {
+  min-height: 100vh;
+  background-color: #0f0f0e;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 /* ------------------------------------------------------------------------
@@ -359,7 +361,7 @@ a {
 
 .cart-body {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 24px;
   align-items: start;
 }
@@ -503,6 +505,97 @@ a {
   font-size: 14px;
 }
 
+/* ------------------------------------------------------------------------
+    METODO DE ENVIO (parte del checkout del carrito)
+    -----------------------------------------------------------------------*/
+
+.cart-checkout-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cart-envio {
+  background-color: #181816;
+  border: 1px solid #3d3322;
+  border-radius: 3px;
+  padding: 24px;
+}
+
+.cart-envio h3 {
+  font-family: "Lora";
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+.envio-opcion {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  margin-bottom: 12px;
+  border: 1px solid #3d3322;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.envio-opcion input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #d6ad60;
+}
+
+.envio-opcion-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.envio-opcion-info strong {
+  color: white;
+}
+
+.envio-opcion-info span {
+  color: #c9c4bb;
+  font-size: 13px;
+}
+
+.envio-opcion-costo {
+  color: #d6ad60;
+  font-weight: bold;
+}
+
+.cart-envio label {
+  display: block;
+  margin: 16px 0 6px;
+  color: #d6ad60;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.cart-envio input[type="text"],
+.cart-envio input[type="tel"],
+.cart-envio select {
+  width: 100%;
+  padding: 12px;
+  color: #f5f0e8;
+  border: 1px solid #4a4131;
+  border-radius: 3px;
+  background-color: #0f0f0e;
+  font-family: "Poppins", sans-serif;
+  outline: none;
+}
+
+.cart-envio input:focus,
+.cart-envio select:focus {
+  border-color: #d6ad60;
+}
+
+.campos-express {
+  display: none;
+}
+
 .cart-vacio,
 .cart-mensaje {
   text-align: center;
@@ -575,6 +668,17 @@ a {
 .orden-total strong {
   color: #d6ad60;
   font-size: 22px;
+}
+
+.orden-envio {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+  margin-bottom: 4px;
+  border-bottom: 1px dashed #3d3322;
+  color: #c9c4bb;
+  font-size: 13px;
 }
 
 .orden-items {

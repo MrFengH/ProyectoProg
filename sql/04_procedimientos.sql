@@ -61,18 +61,31 @@ BEGIN
 END;
 /
 
-/* Crea la cabecera de una orden (total en 0, se acumula con
-   agregar_item_orden). Usado por carrito.jsp al pagar. */
+/* Crea la cabecera de una orden con los datos de envio, con el total
+   inicial en el costo de envio (0 si es retiro, 6 si es express); se
+   va acumulando con agregar_item_orden. Usado por carrito.jsp al pagar. */
 CREATE OR REPLACE PROCEDURE iniciar_orden (
-    p_cliente_id IN  Ordenes.cliente_id%TYPE,
-    p_orden_id   OUT Ordenes.orden_id%TYPE
+    p_cliente_id      IN  Ordenes.cliente_id%TYPE,
+    p_nombre_completo IN  Ordenes.nombre_completo%TYPE,
+    p_telefono        IN  Ordenes.telefono%TYPE,
+    p_metodo_envio    IN  Ordenes.metodo_envio%TYPE,
+    p_provincia       IN  Ordenes.provincia%TYPE,
+    p_sucursal        IN  Ordenes.sucursal%TYPE,
+    p_costo_envio     IN  Ordenes.total%TYPE,
+    p_orden_id        OUT Ordenes.orden_id%TYPE
 )
 AS
 BEGIN
     p_orden_id := seq_orden.NEXTVAL;
 
-    INSERT INTO Ordenes (orden_id, cliente_id, fecha_compra, fecha, total)
-    VALUES (p_orden_id, p_cliente_id, SYSDATE, SYSDATE, 0);
+    INSERT INTO Ordenes (
+        orden_id, cliente_id, fecha_compra, fecha, total,
+        nombre_completo, telefono, metodo_envio, provincia, sucursal
+    )
+    VALUES (
+        p_orden_id, p_cliente_id, SYSDATE, SYSDATE, p_costo_envio,
+        p_nombre_completo, p_telefono, p_metodo_envio, p_provincia, p_sucursal
+    );
 
     COMMIT;
 END;
@@ -127,7 +140,12 @@ BEGIN
                o.cliente_id,
                c.nombre AS cliente_nombre,
                TO_CHAR(o.fecha_compra, 'DD/MM/YYYY HH24:MI') AS fecha_compra,
-               o.total
+               o.total,
+               o.nombre_completo,
+               o.telefono,
+               o.metodo_envio,
+               o.provincia,
+               o.sucursal
         FROM Ordenes o
         JOIN Cliente c ON c.cliente_id = o.cliente_id
         ORDER BY o.orden_id DESC;

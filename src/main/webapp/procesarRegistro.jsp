@@ -46,6 +46,8 @@
         eso lo controla la restriccion UNIQUE de la tabla Cliente.
     --%>
     <%
+        request.setCharacterEncoding("UTF-8");
+
         String nombre = request.getParameter("register-name");
         String email = request.getParameter("register-email");
         String password = request.getParameter("register-password");

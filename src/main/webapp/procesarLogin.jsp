@@ -46,6 +46,8 @@
         (por ejemplo al procesar el pago en carrito.jsp).
     --%>
     <%
+        request.setCharacterEncoding("UTF-8");
+
         String email = request.getParameter("login-email");
         String password = request.getParameter("login-password");
 

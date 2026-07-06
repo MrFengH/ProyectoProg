@@ -34,11 +34,16 @@ CREATE TABLE Producto (
 );
 
 CREATE TABLE Ordenes (
-    orden_id     NUMBER PRIMARY KEY,
-    cliente_id   NUMBER NOT NULL,
-    fecha_compra DATE NOT NULL,
-    fecha        DATE DEFAULT SYSDATE,
-    total        NUMBER(10,2) NOT NULL CHECK (total >= 0),
+    orden_id        NUMBER PRIMARY KEY,
+    cliente_id      NUMBER NOT NULL,
+    fecha_compra    DATE NOT NULL,
+    fecha           DATE DEFAULT SYSDATE,
+    total           NUMBER(10,2) NOT NULL CHECK (total >= 0),
+    nombre_completo VARCHAR2(150),
+    telefono        VARCHAR2(20),
+    metodo_envio    VARCHAR2(20) DEFAULT 'retiro' NOT NULL CHECK (metodo_envio IN ('retiro', 'express')),
+    provincia       VARCHAR2(50),
+    sucursal        VARCHAR2(100),
     CONSTRAINT fk_orden_cliente FOREIGN KEY (cliente_id) REFERENCES Cliente(cliente_id)
 );
 

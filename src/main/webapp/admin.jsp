@@ -21,6 +21,11 @@
         String clienteNombre;
         String fechaCompra;
         double total;
+        String nombreCompleto;
+        String telefono;
+        String metodoEnvio;
+        String provincia;
+        String sucursal;
         List<OrdenItem> items = new ArrayList<OrdenItem>();
     }
 
@@ -48,6 +53,11 @@
             orden.clienteNombre = rsOrdenes.getString("cliente_nombre");
             orden.fechaCompra = rsOrdenes.getString("fecha_compra");
             orden.total = rsOrdenes.getDouble("total");
+            orden.nombreCompleto = rsOrdenes.getString("nombre_completo");
+            orden.telefono = rsOrdenes.getString("telefono");
+            orden.metodoEnvio = rsOrdenes.getString("metodo_envio");
+            orden.provincia = rsOrdenes.getString("provincia");
+            orden.sucursal = rsOrdenes.getString("sucursal");
 
             // 2 Por cada orden, traer sus items (producto, cantidad, subtotal)
             callItems = con.prepareCall("{ call mostrar_items_orden(?, ?) }");
@@ -156,13 +166,25 @@
                         <div class="orden-header">
                             <div>
                                 <span class="orden-id">Orden #<%= orden.ordenId %></span>
-                                <h3><%= orden.clienteNombre %></h3>
+                                <h3><%= orden.nombreCompleto != null ? orden.nombreCompleto : orden.clienteNombre %></h3>
                                 <span class="orden-fecha"><%= orden.fechaCompra %></span>
                             </div>
                             <div class="orden-total">
                                 <span>Total</span>
                                 <strong>$<%= String.format("%.2f", orden.total) %></strong>
                             </div>
+                        </div>
+                        <div class="orden-envio">
+                            <span>
+                                Teléfono: <%= orden.telefono != null ? orden.telefono : "-" %>
+                            </span>
+                            <span>
+                                <% if ("express".equals(orden.metodoEnvio)) { %>
+                                    Uno Express · <%= orden.provincia %>, <%= orden.sucursal %>
+                                <% } else { %>
+                                    Retiro en Local
+                                <% } %>
+                            </span>
                         </div>
                         <div class="orden-items">
                             <% for (OrdenItem item : orden.items) { %>
