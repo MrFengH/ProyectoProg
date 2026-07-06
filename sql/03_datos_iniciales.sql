@@ -1,7 +1,5 @@
 --------------------------------------------------------------------------
 -- Datos iniciales de ESSENCE.
--- La descripcion de cada producto va directo en el INSERT (antes se
--- llenaba despues con UPDATE por separado).
 --------------------------------------------------------------------------
 
 INSERT INTO Categoria VALUES (seq_categoria.NEXTVAL, 'Diseñador');

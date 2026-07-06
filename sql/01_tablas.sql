@@ -1,7 +1,5 @@
 --------------------------------------------------------------------------
 -- Esquema de tablas de ESSENCE.
--- La columna descripcion de Producto va incluida directamente aqui
--- (antes se agregaba con un ALTER TABLE posterior).
 --------------------------------------------------------------------------
 
 CREATE TABLE Cliente (

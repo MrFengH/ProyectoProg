@@ -1,9 +1,5 @@
 --------------------------------------------------------------------------
--- Procedimientos de ESSENCE, ajustados a lo que llaman los JSP.
---
--- Nota: el procedure original crear_orden (un producto = una orden) ya
--- no se usa: carrito.jsp arma una orden con varios productos usando
--- iniciar_orden + agregar_item_orden, por eso no se incluye aqui.
+--Procedimientos de ESSENCE
 --------------------------------------------------------------------------
 
 /* Registro de un cliente nuevo (usado por procesarRegistro.jsp). */
@@ -22,7 +18,7 @@ END;
 /
 
 /* Valida credenciales de login y devuelve el cliente_id + nombre para
-   guardarlos en sesion (usado por procesarLogin.jsp). */
+   guardarlos en sesion */
 CREATE OR REPLACE PROCEDURE validar_login (
     p_email      IN  Cliente.email%TYPE,
     p_password   IN  Cliente.password%TYPE,
@@ -48,8 +44,7 @@ EXCEPTION
 END;
 /
 
-/* Lista de productos, incluye producto_id para poder agregarlos al
-   carrito (usado por productos.jsp y carrito.jsp). */
+/* Lista de productos. */
 CREATE OR REPLACE PROCEDURE mostrar_productos (
     p_resultado OUT SYS_REFCURSOR
 )
